@@ -6,10 +6,32 @@ import Navbar from './Components/Navbar';
 import News from './Components/News';
 
 export default class App extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      isDarkMode: false,
+      mode :"light",
+    };
+  }
+
+  toggleMode = () => {
+    this.setState(prevState => ({
+      isDarkMode: !prevState.isDarkMode,
+      mode : prevState.isDarkMode ? "light" : "dark"
+    }));
+  };
+
+  
+  
   render() {
+
+    const { isDarkMode } = this.state;
+    const { mode } = this.state;
+
     return (
       <div>
-        <Navbar/>
+        <Navbar toggleMode={this.toggleMode} isDarkMode={isDarkMode} mode={mode}/>
         <News/>
       </div>
     )

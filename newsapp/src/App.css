@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  transition: background-color 0.3s, color 0.3s; /* Adding transition for smoother mode switch */
 }
 
 .App-logo {
@@ -14,14 +15,12 @@
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .App-link {
@@ -36,3 +35,17 @@
     transform: rotate(360deg);
   }
 }
+
+/* Dark Mode Styles
+.App.dark {
+  background-color: #111;
+  color: #fff;
+}
+
+.App.dark .App-header {
+  background-color: #222;
+}
+
+.App.dark .App-link {
+  color: #61dafb; /* Keeping link color consistent in both modes */
+
