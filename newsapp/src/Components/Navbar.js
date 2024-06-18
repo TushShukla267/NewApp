@@ -1,52 +1,123 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
+import News from "./News";
+
 export class Navbar extends Component {
+  state = {
+    searchQuery: "",
+    category: "technology",
+    country: "in"
+  };
+
+  handleToggleMode = () => {
+    this.props.toggleMode();
+  };
+
+  handleSearchChange = (event) => {
+    this.setState({ searchQuery: event.target.value });
+  };
+
+  handleCountryChange = (event) => {
+    this.setState({ country: event.target.value });
+  };
+
+  handleSearchClick = () => {
+    this.setState({ category: this.state.searchQuery });
+  };
+
   render() {
-    const { toggleMode, isDarkMode , mode } = this.props;
+    const { isDarkMode, mode } = this.props;
+    const navTextColor = isDarkMode ? "white" : "black";
+
     return (
       <div>
         <nav className={`navbar navbar-expand-lg navbar-${mode} bg-${mode}`}>
-  <div className="container-fluid">
-    <a className="navbar-brand" href="/">NewsApp</a>
-    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span className="navbar-toggler-icon"></span>
-    </button>
-    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-        <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="/">Home</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="/">Link</a>
-        </li>
-        <li className="nav-item dropdown">
-          <a className="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a className="dropdown-item" href="/">Action</a></li>
-            <li><a className="dropdown-item" href="/">Another action</a></li>
-            <li><hr className="dropdown-divider"/></li>
-            <li><a className="dropdown-item" href="/">Something else here</a></li>
-          </ul>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link disabled" href="/" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
-      <form className="d-flex">
-        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button className="btn btn-outline-success" type="submit">Search</button>
-      </form>
-      <div className="form-check form-switch">
-            <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onClick={toggleMode} checked={isDarkMode} />
-            <label className="form-check-label" htmlFor="flexSwitchCheckDefault">{isDarkMode ? 'Dark Mode' : 'Light Mode'}</label>
+          <div className="container-fluid">
+            <nav className="navbar navbar-light bg-light">
+              <div className="container">
+                <img
+                  src={
+                    "https://c8.alamy.com/comp/CNYK1X/the-word-news-in-3d-letters-on-white-background-das-wort-news-aus-CNYK1X.jpg"
+                  }
+                  height={50}
+                  alt="News"
+                />
+              </div>
+            </nav>
+            <div style={{ fontFamily: "cursive" }}>
+              <h1 className="navbar-brand">NewsApp</h1>
+            </div>
+            <button
+              className="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+              <div className="me-auto">
+                <select
+                  className="form-select"
+                  aria-label="Select Country"
+                  value={this.state.country}
+                  onChange={this.handleCountryChange}
+                >
+                  <option value="in">India</option>
+                  <option value="us">United States</option>
+                </select>
+              </div>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <nav className={`navbar navbar-${mode} bg-${mode}`}>
+                <div className="container-fluid">
+                  <form className="d-flex" onSubmit={(e) => e.preventDefault()}>
+                    <input
+                      className="form-control me-2"
+                      type="search"
+                      placeholder="Search for category of news you want"
+                      aria-label="Search"
+                      size={35}
+                      value={this.state.searchQuery}
+                      onChange={this.handleSearchChange}
+                    />
+                    &nbsp;&nbsp;&nbsp;
+                    <button
+                      className="btn btn-outline-success"
+                      type="button"
+                      onClick={this.handleSearchClick}
+                    >
+                      Search
+                    </button>
+                  </form>
+                </div>
+              </nav>
+              <div className="form-check form-switch">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="flexSwitchCheckDefault"
+                  onChange={this.handleToggleMode}
+                  checked={isDarkMode}
+                />
+                <label
+                  className="form-check-label"
+                  htmlFor="flexSwitchCheckDefault"
+                  style={{ color: navTextColor }}
+                  id="modelabel"
+                >
+                  {isDarkMode ? "Dark Mode" : "Light Mode"}
+                </label>
+              </div>
+            </div>
           </div>
-    </div>
-  </div>
-</nav>
+        </nav>
+        <News key={`${this.state.country}-${this.state.category}`} country={this.state.country} category={this.state.category} isDarkMode={isDarkMode} />
       </div>
-    )
+    );
   }
 }
 
-export default Navbar
+export default Navbar;
