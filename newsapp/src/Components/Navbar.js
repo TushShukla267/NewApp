@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import News from "./News";
-
+import newsimg from './newsimg.jpeg';
 export class Navbar extends Component {
   state = {
     searchQuery: "",
@@ -35,16 +35,14 @@ export class Navbar extends Component {
             <nav className="navbar navbar-light bg-light">
               <div className="container">
                 <img
-                  src={
-                    "https://c8.alamy.com/comp/CNYK1X/the-word-news-in-3d-letters-on-white-background-das-wort-news-aus-CNYK1X.jpg"
-                  }
+                  src={newsimg}
                   height={50}
                   alt="News"
                 />
               </div>
             </nav>
             <div style={{ fontFamily: "cursive" }}>
-              <h1 className="navbar-brand">NewsApp</h1>
+              <h1 className="navbar-brand">DailyNews</h1>
             </div>
             <button
               className="navbar-toggler"
