@@ -65,6 +65,11 @@ export class Navbar extends Component {
                 >
                   <option value="in">India</option>
                   <option value="us">United States</option>
+                  <option value="ca">Canada</option>
+                  <option value="jp">Japan</option>
+                  <option value="ru">Russia</option>
+                  <option value="fr">France</option>
+                  <option value="it">Italy</option>
                 </select>
               </div>
               &nbsp;&nbsp;&nbsp;&nbsp;
@@ -74,9 +79,9 @@ export class Navbar extends Component {
                     <input
                       className="form-control me-2"
                       type="search"
-                      placeholder="Search for category of news you want"
+                      placeholder="Search for categorys like business/entertainment/health/science/sports/technology"
                       aria-label="Search"
-                      size={35}
+                      size={78}
                       value={this.state.searchQuery}
                       onChange={this.handleSearchChange}
                     />

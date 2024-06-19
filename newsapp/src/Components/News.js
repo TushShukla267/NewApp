@@ -50,7 +50,7 @@ export class News extends Component {
 
     return (
       <div className='container my-5'>
-        <h1 style={{ display: "flex" , justifyContent : "center" , color: headingcolor , fontFamily : "initial" , fontSize : "50px" , fontWeight : "bolder"}}>Top {category} Headlines</h1>
+        <h1 style={{ margin: "auto" , display: "flex" , justifyContent : "center"  , fontFamily : "initial" , fontSize : "50px" , fontWeight : "bolder" , backgroundColor : "yellow", width : "900px" , border : "7px solid" , borderColor :headingcolor }}>Top {category} Headlines</h1>
         <br /><br />
         {this.state.loading && <Spinner />}
         <div className='row'>
