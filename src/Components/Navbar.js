@@ -1,11 +1,19 @@
 import React, { Component } from "react";
 import News from "./News";
 import newsimg from './newsimg.jpeg';
+
 export class Navbar extends Component {
   state = {
     searchQuery: "",
     category: "technology",
-    country: "in"
+    country: "in",
+    Infinity_scroll :false 
+  };
+
+  togglescroll = () => {
+    this.setState(prevState => ({
+      Infinity_scroll: !prevState.Infinity_scroll,
+    }));
   };
 
   handleToggleMode = () => {
@@ -25,7 +33,7 @@ export class Navbar extends Component {
   };
 
   render() {
-    const { isDarkMode, mode } = this.props;
+    const { isDarkMode, mode, apikey, setProgress } = this.props;
     const navTextColor = isDarkMode ? "white" : "black";
 
     return (
@@ -114,10 +122,36 @@ export class Navbar extends Component {
                   {isDarkMode ? "Dark Mode" : "Light Mode"}
                 </label>
               </div>
+              <div className="form-check form-switch">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="flexSwitchCheckInfiniteScroll"
+                  onClick={this.togglescroll}
+                  checked={this.state.Infinity_scroll}
+                />
+                <label
+                  className="form-check-label"
+                  htmlFor="flexSwitchCheckInfiniteScroll"
+                  style={{ color: navTextColor }}
+                  id="modelabel"
+                >
+                  {this.state.Infinity_scroll ? "Disable Infinite Scroll" : "Enable Infinite Scroll"}
+                </label>
+              </div>
             </div>
           </div>
         </nav>
-        <News key={`${this.state.country}-${this.state.category}`} country={this.state.country} category={this.state.category} isDarkMode={isDarkMode} />
+        <News 
+          key={`${this.state.country}-${this.state.category}`} 
+          country={this.state.country} 
+          category={this.state.category} 
+          isDarkMode={isDarkMode} 
+          apikey={apikey} 
+          setProgress={setProgress} 
+          Infinity_scroll={this.state.Infinity_scroll} 
+        />
       </div>
     );
   }
