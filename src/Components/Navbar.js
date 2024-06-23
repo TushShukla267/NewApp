@@ -7,13 +7,13 @@ export class Navbar extends Component {
     searchQuery: "",
     category: "technology",
     country: "in",
-    Infinity_scroll :false 
+    Infinity_scroll: false
   };
 
-  togglescroll = () => {
-    this.setState(prevState => ({
-      Infinity_scroll: !prevState.Infinity_scroll,
-    }));
+  togglescroll = (event) => {
+    this.setState({
+      Infinity_scroll: event.target.checked,
+    });
   };
 
   handleToggleMode = () => {
@@ -33,7 +33,7 @@ export class Navbar extends Component {
   };
 
   render() {
-    const { isDarkMode, mode, apikey, setProgress } = this.props;
+    const { isDarkMode, mode, apikey, setProgress} = this.props;
     const navTextColor = isDarkMode ? "white" : "black";
 
     return (
@@ -122,13 +122,14 @@ export class Navbar extends Component {
                   {isDarkMode ? "Dark Mode" : "Light Mode"}
                 </label>
               </div>
+              &nbsp;&nbsp;
               <div className="form-check form-switch">
                 <input
                   className="form-check-input"
                   type="checkbox"
                   role="switch"
                   id="flexSwitchCheckInfiniteScroll"
-                  onClick={this.togglescroll}
+                  onChange={this.togglescroll}
                   checked={this.state.Infinity_scroll}
                 />
                 <label
